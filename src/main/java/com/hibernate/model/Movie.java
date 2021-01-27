@@ -17,7 +17,7 @@ public class Movie {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
