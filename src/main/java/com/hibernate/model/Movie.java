@@ -13,7 +13,7 @@ public class Movie {
     private String title;
     private String description;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
