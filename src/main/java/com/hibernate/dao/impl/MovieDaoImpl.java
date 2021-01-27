@@ -5,10 +5,9 @@ import com.hibernate.exception.DataProcessException;
 import com.hibernate.lib.Dao;
 import com.hibernate.model.Movie;
 import com.hibernate.util.HibernateUtil;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 @Dao
 public class MovieDaoImpl implements MovieDao {

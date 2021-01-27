@@ -5,7 +5,6 @@ import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.Movie;
 import com.hibernate.service.MovieService;
-
 import java.util.List;
 
 @Service

@@ -1,7 +1,6 @@
 package com.hibernate.dao;
 
 import com.hibernate.model.Movie;
-
 import java.util.List;
 
 public interface MovieDao {
