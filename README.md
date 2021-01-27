@@ -1,1 +1,0 @@
-# ticket-project-1
