@@ -23,7 +23,6 @@ public class Main {
     public static void main(String[] args) {
         Movie movie = new Movie();
         movie.setTitle("Fast and Furious");
-        MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         movieService.add(movie);
         movieService.getAll().forEach(System.out::println);
 
@@ -42,7 +41,8 @@ public class Main {
 
         LocalDate requestedDate = LocalDate.now();
         System.out.println("Requested date: " + requestedDate);
-        List<MovieSession> res = movieSessionService.findAvailableSessions(1L, requestedDate);
-        System.out.println(res);
+        List<MovieSession> availableSessions = movieSessionService
+                .findAvailableSessions(movie.getId(), requestedDate);
+        System.out.println(availableSessions);
     }
 }
