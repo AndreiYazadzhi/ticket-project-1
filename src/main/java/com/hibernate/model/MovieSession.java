@@ -22,7 +22,6 @@ public class MovieSession {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hall_id")
     private CinemaHall cinemaHall;
-    @JoinColumn(name = "show_time")
     private LocalDateTime showTime;
 
     public Long getId() {
