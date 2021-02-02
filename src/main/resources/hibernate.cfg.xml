@@ -13,5 +13,7 @@
         <property name="hbm2ddl.auto">create-drop</property>
 
         <mapping class="com.hibernate.model.Movie"/>
+        <mapping class="com.hibernate.model.MovieSession"/>
+        <mapping class="com.hibernate.model.CinemaHall"/>
     </session-factory>
 </hibernate-configuration>
