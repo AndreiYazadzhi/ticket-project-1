@@ -4,7 +4,6 @@ import com.hibernate.dao.UserDao;
 import com.hibernate.exception.DataProcessException;
 import com.hibernate.lib.Dao;
 import com.hibernate.model.User;
-import com.hibernate.util.HashUtil;
 import com.hibernate.util.HibernateUtil;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +20,6 @@ public class UserDaoImpl implements UserDao {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.save(user);
-            byte[] salt = HashUtil.getSalt();
-            user.setSalt(salt);
-            user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
             transaction.commit();
             return user;
         } catch (Exception e) {

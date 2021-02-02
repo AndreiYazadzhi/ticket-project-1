@@ -1,11 +1,13 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.exception.AuthenticationException;
+import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 
+@Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private UserService userService = new UserServiceImpl();
 
@@ -25,6 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User login(String email, String password) {
         User user = userService.getByEmail(email);
         String hashedPassword = HashUtil.hashPassword(password, user.getSalt());
+        byte[] salt = user.getSalt();
+        String pass = user.getPassword();
         if (hashedPassword.equals(user.getPassword())) {
             return user;
         }

@@ -1,6 +1,7 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.dao.UserDao;
+import com.hibernate.dao.impl.UserDaoImpl;
 import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
-    private UserDao userDao;
+    private UserDao userDao = new UserDaoImpl();
 
     @Override
     public User add(User user) {
