@@ -1,17 +1,20 @@
 package com.hibernate.model;
 
-import javax.persistence.Column;
+import java.util.Arrays;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String email;
     private String password;
     private byte[] salt;
@@ -46,5 +49,30 @@ public class User {
 
     public void setSalt(byte[] salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return id.equals(user.id) && email.equals(user.email)
+                && password.equals(user.password) && Arrays.equals(salt, user.salt);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, email, password);
+        result = 31 * result + Arrays.hashCode(salt);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", email='" + email + '\'' + '}';
     }
 }
