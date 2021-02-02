@@ -13,22 +13,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User register(String email, String password) {
-        User user = new User();
-        user.setEmail(email);
-        byte[] salt = HashUtil.getSalt();
-        String hashedPassword = HashUtil.hashPassword(password, salt);
-        user.setPassword(hashedPassword);
-        user.setSalt(salt);
-        userService.add(user);
-        return user;
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        return userService.add(newUser);
     }
 
     @Override
     public User login(String email, String password) {
         User user = userService.getByEmail(email);
         String hashedPassword = HashUtil.hashPassword(password, user.getSalt());
-        byte[] salt = user.getSalt();
-        String pass = user.getPassword();
         if (hashedPassword.equals(user.getPassword())) {
             return user;
         }

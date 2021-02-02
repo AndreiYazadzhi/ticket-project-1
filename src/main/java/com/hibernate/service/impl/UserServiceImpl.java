@@ -6,6 +6,7 @@ import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.UserService;
+import com.hibernate.util.HashUtil;
 import java.util.List;
 
 @Service
@@ -15,6 +16,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) {
+        byte[] salt = HashUtil.getSalt();
+        user.setSalt(salt);
+        String hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
+        user.setPassword(hashedPassword);
         return userDao.add(user);
     }
 
