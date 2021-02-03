@@ -8,6 +8,7 @@ import com.hibernate.model.User;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByEmail(String email) {
-        return userDao.getByEmail(email).get();
+    public Optional<User> getByEmail(String email) {
+        return userDao.getByEmail(email);
     }
 
     @Override
