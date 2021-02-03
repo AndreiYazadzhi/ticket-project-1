@@ -2,8 +2,6 @@ package com.hibernate.service.impl;
 
 import com.hibernate.dao.ShoppingCardDao;
 import com.hibernate.dao.TicketDao;
-import com.hibernate.dao.impl.ShoppingCardDaoImpl;
-import com.hibernate.dao.impl.TicketDaoImpl;
 import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.MovieSession;
