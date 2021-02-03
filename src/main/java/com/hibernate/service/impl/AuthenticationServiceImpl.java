@@ -4,6 +4,7 @@ import com.hibernate.exception.AuthenticationException;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
+import com.hibernate.service.ShoppingCardService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.Optional;
@@ -11,13 +12,16 @@ import java.util.Optional;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private UserService userService = new UserServiceImpl();
+    private ShoppingCardService shoppingCardService = new ShoppingCardServiceImpl();
 
     @Override
     public User register(String email, String password) {
         User newUser = new User();
         newUser.setEmail(email);
         newUser.setPassword(password);
-        return userService.add(newUser);
+        newUser = userService.add(newUser);
+        shoppingCardService.registerNewShoppingCart(newUser);
+        return newUser;
     }
 
     @Override
