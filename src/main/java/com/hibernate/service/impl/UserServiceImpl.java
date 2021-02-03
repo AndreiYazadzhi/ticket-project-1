@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
-    private UserDao userDao = new UserDaoImpl();
+    private UserDao userDao;
 
     @Override
     public User add(User user) {

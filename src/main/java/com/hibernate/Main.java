@@ -19,7 +19,7 @@ public class Main {
             (MovieSessionService) injector.getInstance(MovieSessionService.class);
     private static final MovieService movieService =
             (MovieService) injector.getInstance(MovieService.class);
-    private static final User user = authService.login("123", "123");
+    private static final User user = authService.register("123", "123");
 
     public static void main(String[] args) {
         MovieSession movieSession = new MovieSession();

@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 public class ShoppingCardServiceImpl implements ShoppingCardService {
     @Inject
-    private ShoppingCardDao shoppingCardDao = new ShoppingCardDaoImpl();
+    private ShoppingCardDao shoppingCardDao;
     @Inject
-    private TicketDao ticketDao = new TicketDaoImpl();
+    private TicketDao ticketDao;
 
     @Override
     public void addSession(MovieSession movieSession, User user) {

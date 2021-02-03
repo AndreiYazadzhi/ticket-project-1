@@ -1,6 +1,7 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.exception.AuthenticationException;
+import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
@@ -11,8 +12,10 @@ import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private UserService userService = new UserServiceImpl();
-    private ShoppingCardService shoppingCardService = new ShoppingCardServiceImpl();
+    @Inject
+    private UserService userService;
+    @Inject
+    private ShoppingCardService shoppingCardService;
 
     @Override
     public User register(String email, String password) {
