@@ -19,7 +19,6 @@ public class Main {
             (MovieSessionService) injector.getInstance(MovieSessionService.class);
     private static final MovieService movieService =
             (MovieService) injector.getInstance(MovieService.class);
-    private static final User user = authService.register("123", "123");
 
     public static void main(String[] args) {
         MovieSession movieSession = new MovieSession();
@@ -28,6 +27,7 @@ public class Main {
         movieSession.setMovie(movie);
         movieService.add(movie);
         movieSessionService.add(movieSession);
+        User user = authService.register("123", "123");
         shoppingCartService.addSession(movieSession, user);
         shoppingCartService.clear(shoppingCartService.getByUser(user));
         System.out.println(shoppingCartService.getByUser(user));
