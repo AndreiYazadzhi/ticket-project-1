@@ -25,7 +25,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Can`t insert shopping Card  " + shoppingCart, e);
+            throw new DataProcessException("Can`t insert shopping Cart  " + shoppingCart, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,7 +42,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
                     .setParameter("user", user)
                     .getSingleResult();
         } catch (Exception e) {
-            throw new DataProcessException("Could not find card by user: " + user, e);
+            throw new DataProcessException("Could not find cart by user: " + user, e);
         }
     }
 
