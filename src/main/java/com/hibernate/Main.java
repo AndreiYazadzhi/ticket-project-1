@@ -7,6 +7,7 @@ import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
 import com.hibernate.service.MovieService;
 import com.hibernate.service.MovieSessionService;
+import com.hibernate.service.OrderService;
 import com.hibernate.service.ShoppingCartService;
 
 public class Main {
@@ -31,5 +32,10 @@ public class Main {
         shoppingCartService.addSession(movieSession, user);
         shoppingCartService.clear(shoppingCartService.getByUser(user));
         System.out.println(shoppingCartService.getByUser(user));
+        shoppingCartService.addSession(movieSession, user);
+        OrderService orderService
+                = (OrderService) injector.getInstance(OrderService.class);
+        orderService.completeOrder(shoppingCartService.getByUser(user));
+        System.out.println(orderService.getOrdersHistory(user));
     }
 }
