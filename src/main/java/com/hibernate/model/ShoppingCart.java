@@ -12,10 +12,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopping_cards")
-public class ShoppingCard {
+@Table(name = "shopping_carts")
+public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
     private List<Ticket> tickets;
@@ -50,7 +49,7 @@ public class ShoppingCard {
 
     @Override
     public String toString() {
-        return "ShoppingCard{" + "id=" + id + ", tickets=" + tickets
+        return "ShoppingCart{" + "id=" + id + ", tickets=" + tickets
                 + ", user=" + user + '}';
     }
 }

@@ -1,21 +1,21 @@
 package com.hibernate.service.impl;
 
-import com.hibernate.dao.ShoppingCardDao;
+import com.hibernate.dao.ShoppingCartDao;
 import com.hibernate.dao.TicketDao;
 import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.MovieSession;
-import com.hibernate.model.ShoppingCard;
+import com.hibernate.model.ShoppingCart;
 import com.hibernate.model.Ticket;
 import com.hibernate.model.User;
-import com.hibernate.service.ShoppingCardService;
+import com.hibernate.service.ShoppingCartService;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ShoppingCardServiceImpl implements ShoppingCardService {
+public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
-    private ShoppingCardDao shoppingCardDao;
+    private ShoppingCartDao shoppingCartDao;
     @Inject
     private TicketDao ticketDao;
 
@@ -24,27 +24,28 @@ public class ShoppingCardServiceImpl implements ShoppingCardService {
         Ticket ticket = new Ticket();
         ticket.setUser(user);
         ticket.setMovieSession(movieSession);
-        ShoppingCard shoppingCartByUser = shoppingCardDao.getByUser(user);
+        ShoppingCart shoppingCartByUser = shoppingCartDao.getByUser(user);
         List<Ticket> tickets = shoppingCartByUser.getTickets();
+        tickets.add(ticket);
         ticketDao.add(ticket);
-        shoppingCardDao.update(shoppingCartByUser);
+        shoppingCartDao.update(shoppingCartByUser);
     }
 
     @Override
-    public ShoppingCard getByUser(User user) {
-        return shoppingCardDao.getByUser(user);
+    public ShoppingCart getByUser(User user) {
+        return shoppingCartDao.getByUser(user);
     }
 
     @Override
     public void registerNewShoppingCart(User user) {
-        ShoppingCard shoppingCard = new ShoppingCard();
-        shoppingCard.setUser(user);
-        shoppingCardDao.add(shoppingCard);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        shoppingCartDao.add(shoppingCart);
     }
 
     @Override
-    public void clear(ShoppingCard shoppingCart) {
+    public void clear(ShoppingCart shoppingCart) {
         shoppingCart.setTickets(new ArrayList<>());
-        shoppingCardDao.update(shoppingCart);
+        shoppingCartDao.update(shoppingCart);
     }
 }

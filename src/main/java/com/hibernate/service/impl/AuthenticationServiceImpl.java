@@ -5,7 +5,7 @@ import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
-import com.hibernate.service.ShoppingCardService;
+import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.Optional;
@@ -15,7 +15,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
     @Inject
-    private ShoppingCardService shoppingCardService;
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User register(String email, String password) {
@@ -23,7 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         newUser.setEmail(email);
         newUser.setPassword(password);
         newUser = userService.add(newUser);
-        shoppingCardService.registerNewShoppingCart(newUser);
+        shoppingCartService.registerNewShoppingCart(newUser);
         return newUser;
     }
 

@@ -1,15 +1,15 @@
 package com.hibernate.service;
 
 import com.hibernate.model.MovieSession;
-import com.hibernate.model.ShoppingCard;
+import com.hibernate.model.ShoppingCart;
 import com.hibernate.model.User;
 
-public interface ShoppingCardService {
+public interface ShoppingCartService {
     void addSession(MovieSession movieSession, User user);
 
-    ShoppingCard getByUser(User user);
+    ShoppingCart getByUser(User user);
 
     void registerNewShoppingCart(User user);
 
-    void clear(ShoppingCard shoppingCart);
+    void clear(ShoppingCart shoppingCart);
 }
