@@ -1,23 +1,30 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.exception.AuthenticationException;
+import com.hibernate.lib.Inject;
 import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
+import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private UserService userService = new UserServiceImpl();
+    @Inject
+    private UserService userService;
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User register(String email, String password) {
         User newUser = new User();
         newUser.setEmail(email);
         newUser.setPassword(password);
-        return userService.add(newUser);
+        newUser = userService.add(newUser);
+        shoppingCartService.registerNewShoppingCart(newUser);
+        return newUser;
     }
 
     @Override
