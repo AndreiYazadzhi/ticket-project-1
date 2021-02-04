@@ -13,7 +13,7 @@ public class Main {
     private static Injector injector = Injector.getInstance("com.hibernate");
     private static final AuthenticationService authService =
             (AuthenticationService) injector.getInstance(AuthenticationService.class);
-    private static final ShoppingCartService SHOPPING_CART_SERVICE =
+    private static final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
     private static final MovieSessionService movieSessionService =
             (MovieSessionService) injector.getInstance(MovieSessionService.class);
@@ -28,8 +28,8 @@ public class Main {
         movieSession.setMovie(movie);
         movieService.add(movie);
         movieSessionService.add(movieSession);
-        SHOPPING_CART_SERVICE.addSession(movieSession, user);
-        SHOPPING_CART_SERVICE.clear(SHOPPING_CART_SERVICE.getByUser(user));
-        System.out.println(SHOPPING_CART_SERVICE.getByUser(user));
+        shoppingCartService.addSession(movieSession, user);
+        shoppingCartService.clear(shoppingCartService.getByUser(user));
+        System.out.println(shoppingCartService.getByUser(user));
     }
 }
