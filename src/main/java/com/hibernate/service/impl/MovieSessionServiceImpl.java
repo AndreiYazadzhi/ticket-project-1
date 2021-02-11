@@ -1,17 +1,21 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.dao.MovieSessionDao;
-import com.hibernate.lib.Inject;
-import com.hibernate.lib.Service;
 import com.hibernate.model.MovieSession;
 import com.hibernate.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
-    @Inject
     private MovieSessionDao movieSessionDao;
+
+    @Autowired
+    public MovieSessionServiceImpl(MovieSessionDao movieSessionDao) {
+        this.movieSessionDao = movieSessionDao;
+    }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {

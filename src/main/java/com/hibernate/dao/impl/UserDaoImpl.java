@@ -2,22 +2,30 @@ package com.hibernate.dao.impl;
 
 import com.hibernate.dao.UserDao;
 import com.hibernate.exception.DataProcessException;
-import com.hibernate.lib.Dao;
 import com.hibernate.model.User;
-import com.hibernate.util.HibernateUtil;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class UserDaoImpl implements UserDao {
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public UserDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public User add(User user) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -36,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> getByEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from User where email = :email", User.class)
                     .setParameter("email", email)
                     .uniqueResultOptional();
@@ -47,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM User", User.class).getResultList();
         } catch (Exception e) {
             throw new DataProcessException("Could not get all users", e);

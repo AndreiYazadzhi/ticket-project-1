@@ -2,20 +2,28 @@ package com.hibernate.dao.impl;
 
 import com.hibernate.dao.TicketDao;
 import com.hibernate.exception.DataProcessException;
-import com.hibernate.lib.Dao;
 import com.hibernate.model.Ticket;
-import com.hibernate.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class TicketDaoImpl implements TicketDao {
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public TicketDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public Ticket add(Ticket ticket) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(ticket);
             transaction.commit();

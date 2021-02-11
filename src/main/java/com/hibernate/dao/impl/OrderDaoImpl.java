@@ -2,22 +2,30 @@ package com.hibernate.dao.impl;
 
 import com.hibernate.dao.OrderDao;
 import com.hibernate.exception.DataProcessException;
-import com.hibernate.lib.Dao;
 import com.hibernate.model.Order;
 import com.hibernate.model.User;
-import com.hibernate.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class OrderDaoImpl implements OrderDao {
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public OrderDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public Order add(Order order) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(order);
             transaction.commit();
@@ -36,7 +44,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> getOrdersByUser(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("SELECT distinct FROM Order o"
                     + " left join fetch o.tickets t"
                     + " left join fetch t.movieSession m"

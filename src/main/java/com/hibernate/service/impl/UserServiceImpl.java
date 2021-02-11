@@ -1,18 +1,22 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.dao.UserDao;
-import com.hibernate.lib.Inject;
-import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Inject
     private UserDao userDao;
+
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public User add(User user) {
