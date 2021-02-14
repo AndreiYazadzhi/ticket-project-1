@@ -2,8 +2,6 @@ package com.hibernate.service.impl;
 
 import com.hibernate.dao.ShoppingCartDao;
 import com.hibernate.dao.TicketDao;
-import com.hibernate.lib.Inject;
-import com.hibernate.lib.Service;
 import com.hibernate.model.MovieSession;
 import com.hibernate.model.ShoppingCart;
 import com.hibernate.model.Ticket;
@@ -11,13 +9,20 @@ import com.hibernate.model.User;
 import com.hibernate.service.ShoppingCartService;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    @Inject
-    private ShoppingCartDao shoppingCartDao;
-    @Inject
-    private TicketDao ticketDao;
+    private final ShoppingCartDao shoppingCartDao;
+    private final TicketDao ticketDao;
+
+    @Autowired
+    public ShoppingCartServiceImpl(ShoppingCartDao shoppingCartDao,
+                                   TicketDao ticketDao) {
+        this.shoppingCartDao = shoppingCartDao;
+        this.ticketDao = ticketDao;
+    }
 
     @Override
     public void addSession(MovieSession movieSession, User user) {

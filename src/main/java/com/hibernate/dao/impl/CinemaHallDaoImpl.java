@@ -2,21 +2,29 @@ package com.hibernate.dao.impl;
 
 import com.hibernate.dao.CinemaHallDao;
 import com.hibernate.exception.DataProcessException;
-import com.hibernate.lib.Dao;
 import com.hibernate.model.CinemaHall;
-import com.hibernate.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class CinemaHallDaoImpl implements CinemaHallDao {
+    private final SessionFactory sessionFactory;
+
+    @Autowired
+    public CinemaHallDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(cinemaHall);
             transaction.commit();
@@ -35,7 +43,7 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
 
     @Override
     public List<CinemaHall> getAll() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM CinemaHall", CinemaHall.class).getResultList();
         } catch (Exception e) {
             throw new DataProcessException("Could not get all cinema halls", e);

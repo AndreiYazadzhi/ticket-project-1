@@ -1,21 +1,26 @@
 package com.hibernate.service.impl;
 
 import com.hibernate.exception.AuthenticationException;
-import com.hibernate.lib.Inject;
-import com.hibernate.lib.Service;
 import com.hibernate.model.User;
 import com.hibernate.service.AuthenticationService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Inject
-    private UserService userService;
-    @Inject
-    private ShoppingCartService shoppingCartService;
+    private final UserService userService;
+    private final ShoppingCartService shoppingCartService;
+
+    @Autowired
+    public AuthenticationServiceImpl(UserService userService,
+                                     ShoppingCartService shoppingCartService) {
+        this.userService = userService;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public User register(String email, String password) {
