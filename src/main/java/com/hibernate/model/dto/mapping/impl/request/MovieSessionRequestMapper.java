@@ -17,7 +17,8 @@ public class MovieSessionRequestMapper implements
     private final CinemaHallService cinemaHallService;
 
     @Autowired
-    public MovieSessionRequestMapper(MovieService movieService, CinemaHallService cinemaHallService) {
+    public MovieSessionRequestMapper(MovieService movieService,
+                                     CinemaHallService cinemaHallService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
     }
@@ -31,5 +32,5 @@ public class MovieSessionRequestMapper implements
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         movieSession.setShowTime(LocalDateTime.parse(dto.getShowTime(), formatter));
         return movieSession;
-}
+    }
 }

@@ -23,8 +23,9 @@ public class CinemaHallController {
     private final DtoRequestMapper<CinemaHallRequestDto, CinemaHall> requestMapper;
 
     @Autowired
-    public CinemaHallController(CinemaHallService cinemaHallService, DtoResponseMapper<CinemaHallResponseDto,
-            CinemaHall> responseMapper, DtoRequestMapper<CinemaHallRequestDto, CinemaHall> requestMapper) {
+    public CinemaHallController(CinemaHallService cinemaHallService,
+                                DtoResponseMapper<CinemaHallResponseDto, CinemaHall> responseMapper,
+                                DtoRequestMapper<CinemaHallRequestDto, CinemaHall> requestMapper) {
         this.cinemaHallService = cinemaHallService;
         this.responseMapper = responseMapper;
         this.requestMapper = requestMapper;

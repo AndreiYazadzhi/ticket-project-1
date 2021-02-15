@@ -28,8 +28,11 @@ public class MovieSessionController {
     private final DtoRequestMapper<MovieSessionRequestDto, MovieSession> requestMapper;
 
     @Autowired
-    public MovieSessionController(MovieSessionService movieSessionService, DtoResponseMapper<MovieSessionResponseDto,
-            MovieSession> responseMapper, DtoRequestMapper<MovieSessionRequestDto, MovieSession> requestMapper) {
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  DtoResponseMapper<MovieSessionResponseDto,
+                                          MovieSession> responseMapper,
+                                  DtoRequestMapper<MovieSessionRequestDto,
+                                          MovieSession> requestMapper) {
         this.movieSessionService = movieSessionService;
         this.responseMapper = responseMapper;
         this.requestMapper = requestMapper;
