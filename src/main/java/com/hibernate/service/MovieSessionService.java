@@ -7,5 +7,13 @@ import java.util.List;
 public interface MovieSessionService {
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
+    List<MovieSession> getAll();
+
+    void update(MovieSession movieSession);
+
+    void remove(MovieSession movieSession);
+
+    MovieSession get(Long id);
+
     MovieSession add(MovieSession session);
 }
