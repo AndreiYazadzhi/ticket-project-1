@@ -46,8 +46,8 @@ public class AppConfig {
         properties.put("hibernate.use_sql_comments", environment
                 .getProperty("hibernate.use_sql_comments"));
         properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
-        factoryBean.setPackagesToScan("com.hibernate.model");
         factoryBean.setHibernateProperties(properties);
+        factoryBean.setPackagesToScan("com.hibernate.model");
         return factoryBean;
     }
 }
