@@ -15,7 +15,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 @PropertySource("classpath:db.properties")
 @ComponentScan(basePackages = {
         "com.hibernate.dao",
-        "com.hibernate.service"
+        "com.hibernate.service",
+        "com.hibernate.model.dto"
 })
 public class AppConfig {
     private final Environment environment;
@@ -45,8 +46,8 @@ public class AppConfig {
         properties.put("hibernate.use_sql_comments", environment
                 .getProperty("hibernate.use_sql_comments"));
         properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
-        factoryBean.setPackagesToScan("com.hibernate.model");
         factoryBean.setHibernateProperties(properties);
+        factoryBean.setPackagesToScan("com.hibernate.model");
         return factoryBean;
     }
 }
