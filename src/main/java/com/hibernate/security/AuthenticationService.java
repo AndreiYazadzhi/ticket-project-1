@@ -1,4 +1,4 @@
-package com.hibernate.service;
+package com.hibernate.security;
 
 import com.hibernate.model.User;
 

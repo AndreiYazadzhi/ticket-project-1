@@ -5,7 +5,6 @@ import com.hibernate.model.User;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +27,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getByEmail(String email) {
-        return userDao.getByEmail(email);
+    public User getByEmail(String email) {
+        return userDao.getByEmail(email).get();
+    }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).get();
     }
 
     @Override

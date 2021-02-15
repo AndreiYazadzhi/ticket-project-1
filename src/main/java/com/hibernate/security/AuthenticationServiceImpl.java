@@ -1,8 +1,7 @@
-package com.hibernate.service.impl;
+package com.hibernate.security;
 
 import com.hibernate.exception.AuthenticationException;
 import com.hibernate.model.User;
-import com.hibernate.service.AuthenticationService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;
@@ -34,8 +33,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User login(String email, String password) {
-        Optional<User> user = userService.getByEmail(email);
-        if (user.isPresent() && user.get().getPassword()
+        Optional<User> user = Optional.of(userService.getByEmail(email));
+        if (user.get().getPassword()
                 .equals(HashUtil.hashPassword(password, user.get().getSalt()))) {
             return user.get();
         }

@@ -9,5 +9,7 @@ public interface UserDao {
 
     Optional<User> getByEmail(String email);
 
+    Optional<User> get(Long id);
+
     List<User> getAll();
 }
