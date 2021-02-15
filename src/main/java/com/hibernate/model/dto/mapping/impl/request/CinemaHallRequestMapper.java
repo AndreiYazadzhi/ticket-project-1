@@ -13,7 +13,6 @@ public class CinemaHallRequestMapper implements
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setDescription(dto.getDescription());
         cinemaHall.setCapacity(dto.getCapacity());
-        cinemaHall.setId(dto.getId());
         return cinemaHall;
     }
 }

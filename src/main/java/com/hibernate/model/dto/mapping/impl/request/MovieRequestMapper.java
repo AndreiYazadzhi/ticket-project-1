@@ -13,7 +13,6 @@ public class MovieRequestMapper implements
         Movie movie = new Movie();
         movie.setDescription(dto.getDescription());
         movie.setTitle(dto.getTitle());
-        movie.setId(dto.getId());
         return movie;
     }
 }

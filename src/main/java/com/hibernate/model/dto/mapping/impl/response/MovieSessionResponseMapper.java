@@ -17,6 +17,7 @@ public class MovieSessionResponseMapper implements
         movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
         movieSessionResponseDto.setShowTime(movieSession.getShowTime()
                 .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
+        movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
         return movieSessionResponseDto;
     }
 }
