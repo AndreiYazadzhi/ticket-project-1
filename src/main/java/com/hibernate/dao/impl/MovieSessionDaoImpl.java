@@ -54,18 +54,19 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public void update(MovieSession movieSession) {
+    public void update(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(movieSession);
+            session.update(session.get(MovieSession.class, id));
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Couldn't update the " + movieSession, e);
+            throw new DataProcessException("Couldn't update session with id "
+                    + id, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -74,18 +75,18 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public void remove(MovieSession movieSession) {
+    public void remove(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.delete(movieSession);
+            session.delete(session.get(MovieSession.class, id));
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Couldn't update the " + movieSession, e);
+            throw new DataProcessException("Couldn't update session with id " + id, e);
         } finally {
             if (session != null) {
                 session.close();

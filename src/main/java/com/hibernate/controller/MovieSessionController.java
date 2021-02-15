@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,16 +39,16 @@ public class MovieSessionController {
         this.requestMapper = requestMapper;
     }
 
-    @PutMapping
-    public void update(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id,
+                       @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = requestMapper.fromDto(movieSessionRequestDto);
-        movieSessionService.update(movieSession);
+        movieSessionService.update(id);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = requestMapper.fromDto(movieSessionRequestDto);
-        movieSessionService.remove(movieSession);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        movieSessionService.remove(id);
     }
 
     @PostMapping

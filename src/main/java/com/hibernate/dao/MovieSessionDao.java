@@ -10,9 +10,9 @@ public interface MovieSessionDao {
 
     Optional<MovieSession> get(Long id);
 
-    void update(MovieSession movieSession);
+    void update(Long id);
 
-    void remove(MovieSession movieSession);
+    void remove(Long id);
 
     List<MovieSession> getAll();
 
