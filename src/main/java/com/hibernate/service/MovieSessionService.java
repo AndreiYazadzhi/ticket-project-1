@@ -9,7 +9,7 @@ public interface MovieSessionService {
 
     List<MovieSession> getAll();
 
-    void update(Long id);
+    void update(MovieSession movieSession);
 
     void remove(Long id);
 

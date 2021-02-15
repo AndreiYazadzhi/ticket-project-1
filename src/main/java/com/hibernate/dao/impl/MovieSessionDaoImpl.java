@@ -54,19 +54,18 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public void update(Long id) {
+    public void update(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(session.get(MovieSession.class, id));
+            session.update(movieSession);
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Couldn't update session with id "
-                    + id, e);
+            throw new DataProcessException("Couldn't update the " + movieSession, e);
         } finally {
             if (session != null) {
                 session.close();
