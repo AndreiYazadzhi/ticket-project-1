@@ -5,6 +5,15 @@ import java.util.List;
 public class ShoppingCartResponseDto {
     private Long cartId;
     private List<Long> ticketsIds;
+    private String userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public Long getCartId() {
         return cartId;

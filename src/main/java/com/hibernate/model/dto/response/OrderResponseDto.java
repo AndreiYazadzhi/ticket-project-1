@@ -1,10 +1,7 @@
 package com.hibernate.model.dto.response;
 
-import java.util.List;
-
 public class OrderResponseDto {
     private Long id;
-    private List<Long> ticketsIds;
     private String orderDate;
     private String userEmail;
 
@@ -14,14 +11,6 @@ public class OrderResponseDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Long> getTicketsIds() {
-        return ticketsIds;
-    }
-
-    public void setTicketsIds(List<Long> ticketsIds) {
-        this.ticketsIds = ticketsIds;
     }
 
     public String getOrderDate() {
