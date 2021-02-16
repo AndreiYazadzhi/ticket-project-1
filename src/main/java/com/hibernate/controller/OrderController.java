@@ -2,7 +2,6 @@ package com.hibernate.controller;
 
 import com.hibernate.model.Order;
 import com.hibernate.model.dto.mapping.DtoResponseMapper;
-import com.hibernate.model.dto.request.OrderRequestDto;
 import com.hibernate.model.dto.response.OrderResponseDto;
 import com.hibernate.service.OrderService;
 import com.hibernate.service.ShoppingCartService;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +34,9 @@ public class OrderController {
         this.responseMapper = responseMapper;
     }
 
-    @PutMapping("/complete")
-    public void completeOrder(OrderRequestDto dto) {
-        orderService.completeOrder(shoppingCartService
-                .getByUser(userService.getByEmail(dto.getUserEmail())));
+    @PostMapping("/complete")
+    public void completeOrder(@RequestParam Long userId) {
+        orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @GetMapping

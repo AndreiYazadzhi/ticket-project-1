@@ -33,8 +33,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User login(String email, String password) {
-        Optional<User> user = Optional.of(userService.getByEmail(email));
-        if (user.get().getPassword()
+        Optional<User> user = userService.getByEmail(email);
+        if (user.isPresent() && user.get().getPassword()
                 .equals(HashUtil.hashPassword(password, user.get().getSalt()))) {
             return user.get();
         }

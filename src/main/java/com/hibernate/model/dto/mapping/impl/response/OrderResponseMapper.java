@@ -9,13 +9,15 @@ import java.util.stream.Collectors;
 
 public class OrderResponseMapper implements
         DtoResponseMapper<OrderResponseDto, Order> {
+    private static final String PATTERN = "dd.MM.yyyy HH:mm";
+
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         orderResponseDto.setOrderDate(order.getOrderDate()
-                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")));
+                .format(DateTimeFormatter.ofPattern(PATTERN)));
         orderResponseDto.setId(order.getId());
-        orderResponseDto.setTicketsId(order.getTickets().stream()
+        orderResponseDto.setTicketsIds(order.getTickets().stream()
                 .map(Ticket::getId).collect(Collectors.toList()));
         orderResponseDto.setUserEmail(order.getUser().getEmail());
         return orderResponseDto;

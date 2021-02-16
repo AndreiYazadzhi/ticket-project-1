@@ -6,6 +6,7 @@ import com.hibernate.model.dto.response.ShoppingCartResponseDto;
 import com.hibernate.service.MovieSessionService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class ShoppingCartController {
     private final UserService userService;
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
 
+    @Autowired
     public ShoppingCartController(MovieSessionService movieSessionService,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,

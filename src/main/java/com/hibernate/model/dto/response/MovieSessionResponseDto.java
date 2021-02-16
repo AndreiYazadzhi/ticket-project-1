@@ -1,10 +1,19 @@
 package com.hibernate.model.dto.response;
 
 public class MovieSessionResponseDto {
+    private Long id;
     private String movieTitle;
     private Long cinemaHallId;
     private String showTime;
     private Long movieId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getMovieId() {
         return movieId;
