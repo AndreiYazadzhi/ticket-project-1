@@ -11,6 +11,7 @@ public class MovieResponseMapper implements
     @Override
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
+        movieResponseDto.setId(movie.getId());
         movieResponseDto.setDescription(movie.getDescription());
         movieResponseDto.setTitle(movie.getTitle());
         return movieResponseDto;

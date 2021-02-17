@@ -1,8 +1,7 @@
-package com.hibernate.service.impl;
+package com.hibernate.security;
 
 import com.hibernate.exception.AuthenticationException;
 import com.hibernate.model.User;
-import com.hibernate.service.AuthenticationService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import com.hibernate.util.HashUtil;

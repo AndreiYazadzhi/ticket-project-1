@@ -9,5 +9,7 @@ public interface UserService {
 
     Optional<User> getByEmail(String email);
 
+    User get(Long id);
+
     List<User> getAll();
 }
