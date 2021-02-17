@@ -5,7 +5,9 @@ import com.hibernate.model.Ticket;
 import com.hibernate.model.dto.mapping.DtoResponseMapper;
 import com.hibernate.model.dto.response.ShoppingCartResponseDto;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ShoppingCartResponseMapper implements
         DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> {
     @Override

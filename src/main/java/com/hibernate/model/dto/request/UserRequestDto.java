@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 public class UserRequestDto {
     @NotNull
     @EmailValidation
+    @Min(8)
     private String email;
     @NotNull
     @Min(6)

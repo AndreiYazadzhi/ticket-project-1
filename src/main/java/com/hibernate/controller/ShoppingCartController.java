@@ -1,12 +1,15 @@
 package com.hibernate.controller;
 
 import com.hibernate.model.ShoppingCart;
+import com.hibernate.model.User;
 import com.hibernate.model.dto.mapping.DtoResponseMapper;
 import com.hibernate.model.dto.response.ShoppingCartResponseDto;
 import com.hibernate.service.MovieSessionService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,14 +37,20 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/movie-sessions")
-    public void addMovieSession(@RequestParam Long userId,
-                                                   @RequestParam Long movieSessionId) {
-        shoppingCartService.addSession(movieSessionService
-                .get(movieSessionId), userService.get(userId));
+    public void addMovieSession(Authentication authentication, @RequestParam Long movieSessionId) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String email = userDetails.getUsername();
+        User user = userService.getByEmail(email).orElseThrow(()
+                -> new RuntimeException("There is no such user with email " + email + "."));
+        shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getByUser(@RequestParam Long userId) {
-        return responseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
+    public ShoppingCartResponseDto getByUser(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String email = userDetails.getUsername();
+        User user = userService.getByEmail(email).orElseThrow(()
+                -> new RuntimeException("There is no such user with email " + email + "."));
+        return responseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
