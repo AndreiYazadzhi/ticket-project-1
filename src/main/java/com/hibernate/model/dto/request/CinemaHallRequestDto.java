@@ -1,6 +1,9 @@
 package com.hibernate.model.dto.request;
 
+import javax.validation.constraints.Max;
+
 public class CinemaHallRequestDto {
+    @Max(75)
     private int capacity;
     private String description;
 

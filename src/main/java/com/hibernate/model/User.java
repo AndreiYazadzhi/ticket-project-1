@@ -17,7 +17,6 @@ public class User {
     private Long id;
     private String email;
     private String password;
-    private byte[] salt;
 
     public Long getId() {
         return id;
@@ -43,14 +42,6 @@ public class User {
         this.password = password;
     }
 
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -61,14 +52,7 @@ public class User {
         }
         User user = (User) o;
         return id.equals(user.id) && email.equals(user.email)
-                && password.equals(user.password) && Arrays.equals(salt, user.salt);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(id, email, password);
-        result = 31 * result + Arrays.hashCode(salt);
-        return result;
+                && password.equals(user.password);
     }
 
     @Override

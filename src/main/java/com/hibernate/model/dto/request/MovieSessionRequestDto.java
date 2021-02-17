@@ -1,8 +1,13 @@
 package com.hibernate.model.dto.request;
 
+import javax.validation.constraints.NotNull;
+
 public class MovieSessionRequestDto {
+    @NotNull
     private Long movieId;
+    @NotNull
     private String showTime;
+    @NotNull
     private Long cinemaHallId;
 
     public Long getMovieId() {
