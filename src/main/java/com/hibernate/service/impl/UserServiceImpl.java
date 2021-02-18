@@ -3,27 +3,26 @@ package com.hibernate.service.impl;
 import com.hibernate.dao.UserDao;
 import com.hibernate.model.User;
 import com.hibernate.service.UserService;
-import com.hibernate.util.HashUtil;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder encoder) {
         this.userDao = userDao;
+        this.encoder = encoder;
     }
 
     @Override
     public User add(User user) {
-        byte[] salt = HashUtil.getSalt();
-        user.setSalt(salt);
-        String hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
-        user.setPassword(hashedPassword);
+        user.setPassword(encoder.encode(user.getPassword()));
         return userDao.add(user);
     }
 

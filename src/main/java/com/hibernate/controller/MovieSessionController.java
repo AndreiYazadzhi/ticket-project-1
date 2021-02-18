@@ -9,6 +9,7 @@ import com.hibernate.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,7 +54,7 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public void add(@RequestBody MovieSessionRequestDto dto) {
+    public void add(@RequestBody @Valid MovieSessionRequestDto dto) {
         movieSessionService.add(requestMapper.fromDto(dto));
     }
 

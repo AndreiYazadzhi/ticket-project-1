@@ -6,7 +6,9 @@ import com.hibernate.model.dto.mapping.DtoResponseMapper;
 import com.hibernate.model.dto.response.OrderResponseDto;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderResponseMapper implements
         DtoResponseMapper<OrderResponseDto, Order> {
     private static final String PATTERN = "dd.MM.yyyy HH:mm";

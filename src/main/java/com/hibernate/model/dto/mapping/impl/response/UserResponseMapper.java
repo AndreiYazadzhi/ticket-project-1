@@ -3,7 +3,9 @@ package com.hibernate.model.dto.mapping.impl.response;
 import com.hibernate.model.User;
 import com.hibernate.model.dto.mapping.DtoResponseMapper;
 import com.hibernate.model.dto.response.UserResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserResponseMapper implements DtoResponseMapper<UserResponseDto, User> {
     @Override
     public UserResponseDto toDto(User user) {
