@@ -7,13 +7,10 @@ import javax.validation.constraints.NotNull;
 
 @PasswordValidation(message = "Passwords are not equal")
 public class UserRequestDto {
-    @NotNull
     @EmailValidation
     private String email;
-    @NotNull
     @Min(6)
     private String password;
-    @NotNull
     private String repeatPassword;
 
     public String getRepeatPassword() {
