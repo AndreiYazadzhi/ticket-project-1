@@ -3,7 +3,6 @@ package com.hibernate.model.dto.request;
 import com.hibernate.lib.annotations.EmailValidation;
 import com.hibernate.lib.annotations.PasswordValidation;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 @PasswordValidation(message = "Passwords are not equal")
 public class UserRequestDto {
