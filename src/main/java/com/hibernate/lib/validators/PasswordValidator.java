@@ -11,7 +11,7 @@ public class PasswordValidator implements
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
         UserRequestDto user = (UserRequestDto) value;
-        if(user.getPassword() == null
+        if (user.getPassword() == null
                 || user.getRepeatPassword() == null) {
             return false;
         }
