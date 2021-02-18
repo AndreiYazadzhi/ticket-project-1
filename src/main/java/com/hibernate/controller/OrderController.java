@@ -40,8 +40,7 @@ public class OrderController {
     public void completeOrder(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String email = userDetails.getUsername();
-        User user = userService.getByEmail(email).orElseThrow(()
-                -> new RuntimeException("No user found with such email " + email));
+        User user = userService.getByEmail(email).get();
         orderService.completeOrder(shoppingCartService.getByUser(user));
     }
 
@@ -49,8 +48,7 @@ public class OrderController {
     public List<OrderResponseDto> getOrderHistory(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String email = userDetails.getUsername();
-        User user = userService.getByEmail(email).orElseThrow(()
-                -> new RuntimeException("There is no such user with email " + email));
+        User user = userService.getByEmail(email).get();
         return orderService.getOrdersHistory(user).stream()
                 .map(responseMapper::toDto)
                 .collect(Collectors.toList());

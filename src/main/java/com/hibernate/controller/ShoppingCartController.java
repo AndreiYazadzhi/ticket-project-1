@@ -40,17 +40,14 @@ public class ShoppingCartController {
     public void addMovieSession(Authentication authentication, @RequestParam Long movieSessionId) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String email = userDetails.getUsername();
-        User user = userService.getByEmail(email).orElseThrow(()
-                -> new RuntimeException("There is no such user with email " + email + "."));
-        shoppingCartService.addSession(movieSessionService.get(movieSessionId), user);
+        User user = userService.getByEmail(email).get();
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String email = userDetails.getUsername();
-        User user = userService.getByEmail(email).orElseThrow(()
-                -> new RuntimeException("There is no such user with email " + email + "."));
+        User user = userService.getByEmail(email).get();
         return responseMapper.toDto(shoppingCartService.getByUser(user));
     }
 }
