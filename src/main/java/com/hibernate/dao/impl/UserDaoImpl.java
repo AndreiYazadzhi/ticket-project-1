@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> getByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("from User left join fetch roles where email = :email", User.class)
+                    .createQuery("from User join fetch roles where email = :email", User.class)
                     .setParameter("email", email)
                     .uniqueResultOptional();
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("from User left join fetch roles roles WHERE id = :id", User.class)
+                    .createQuery("from User join fetch roles roles WHERE id = :id", User.class)
                     .setParameter("id", id).uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessException("Could not get User by id " + id + ". ", e);
