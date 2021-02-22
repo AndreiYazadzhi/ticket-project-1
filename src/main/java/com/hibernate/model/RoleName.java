@@ -1,5 +1,5 @@
 package com.hibernate.model;
 
-public enum Roles {
+public enum RoleName {
     ADMIN, USER;
 }

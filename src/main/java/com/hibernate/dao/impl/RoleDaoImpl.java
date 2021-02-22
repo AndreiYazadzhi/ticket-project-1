@@ -3,7 +3,7 @@ package com.hibernate.dao.impl;
 import com.hibernate.dao.RoleDao;
 import com.hibernate.exception.DataProcessException;
 import com.hibernate.model.Role;
-import com.hibernate.model.Roles;
+import com.hibernate.model.RoleName;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,7 +24,7 @@ public class RoleDaoImpl implements RoleDao {
         try (Session session = sessionFactory.openSession()) {
             return session
                     .createQuery("FROM Role WHERE roleName = :roleName", Role.class)
-                    .setParameter("roleName", Roles.valueOf(roleName))
+                    .setParameter("roleName", RoleName.valueOf(roleName))
                     .getSingleResult();
         } catch (Exception e) {
             throw new DataProcessException("Can't get Role:" + roleName, e);
