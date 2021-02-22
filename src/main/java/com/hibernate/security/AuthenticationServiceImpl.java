@@ -4,7 +4,7 @@ import com.hibernate.model.User;
 import com.hibernate.service.RoleService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
-import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User newUser = new User();
         newUser.setEmail(email);
         newUser.setPassword(password);
-        newUser.setRoles(List.of(roleService.getRoleByName("USER")));
+        newUser.setRoles(Set.of(roleService.getRoleByName("USER")));
         newUser = userService.add(newUser);
         shoppingCartService.registerNewShoppingCart(newUser);
         return newUser;

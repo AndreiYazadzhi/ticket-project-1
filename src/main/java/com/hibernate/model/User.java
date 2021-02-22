@@ -1,6 +1,6 @@
 package com.hibernate.model;
 
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +18,13 @@ public class User {
     private String email;
     private String password;
     @ManyToMany
-    private List<Role> roles;
+    private Set<Role> roles;
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
