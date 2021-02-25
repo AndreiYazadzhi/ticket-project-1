@@ -12,17 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "movie_sessions")
-public class MovieSession {
+@Table(name = "performance_sessions")
+public class PerformanceSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
-    private Movie movie;
+    private Performance performance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hall_id")
-    private CinemaHall cinemaHall;
+    private Stage stage;
     @Column(name = "show_time")
     private LocalDateTime showTime;
 
@@ -34,20 +34,20 @@ public class MovieSession {
         this.id = id;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Performance getMovie() {
+        return performance;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovie(Performance performance) {
+        this.performance = performance;
     }
 
-    public CinemaHall getCinemaHall() {
-        return cinemaHall;
+    public Stage getCinemaHall() {
+        return stage;
     }
 
-    public void setCinemaHall(CinemaHall cinemaHall) {
-        this.cinemaHall = cinemaHall;
+    public void setCinemaHall(Stage stage) {
+        this.stage = stage;
     }
 
     public LocalDateTime getShowTime() {
@@ -60,7 +60,11 @@ public class MovieSession {
 
     @Override
     public String toString() {
-        return "MovieSession{" + "id=" + id + ", movie=" + movie + ", cinemaHall="
-                + cinemaHall + ", showTime=" + showTime + '}';
+        return "PerfomanceSession{" +
+                "id=" + id +
+                ", perfomance=" + performance +
+                ", cinemaHall=" + stage +
+                ", showTime=" + showTime +
+                '}';
     }
 }
