@@ -60,11 +60,7 @@ public class PerformanceSession {
 
     @Override
     public String toString() {
-        return "PerfomanceSession{" +
-                "id=" + id +
-                ", perfomance=" + performance +
-                ", cinemaHall=" + stage +
-                ", showTime=" + showTime +
-                '}';
+        return "PerfomanceSession{" + "id=" + id + ", perfomance=" + performance
+                + ", cinemaHall=" + stage + ", showTime=" + showTime + '}';
     }
 }

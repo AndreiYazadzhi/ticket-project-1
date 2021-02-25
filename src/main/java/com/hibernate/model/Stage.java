@@ -41,10 +41,7 @@ public class Stage {
 
     @Override
     public String toString() {
-        return "Stage{" +
-                "id=" + id +
-                ", capacity=" + capacity +
-                ", description='" + description + '\'' +
-                '}';
+        return "Stage{" + "id=" + id + ", capacity=" + capacity
+                + ", description='" + description + '\'' + '}';
     }
 }

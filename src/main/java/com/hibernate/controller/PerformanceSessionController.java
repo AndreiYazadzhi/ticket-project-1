@@ -26,7 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/performance-sessions")
 public class PerformanceSessionController {
     private final PerformanceSessionService performanceSessionService;
-    private final DtoResponseMapper<PerformanceSessionResponseDto, PerformanceSession> responseMapper;
+    private final DtoResponseMapper<PerformanceSessionResponseDto,
+            PerformanceSession> responseMapper;
     private final DtoRequestMapper<PerformanceSessionRequestDto, PerformanceSession> requestMapper;
 
     @Autowired
