@@ -18,10 +18,10 @@ public class PerformanceSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "performance_id")
     private Performance performance;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hall_id")
+    @JoinColumn(name = "stage_id")
     private Stage stage;
     @Column(name = "show_time")
     private LocalDateTime showTime;
@@ -60,7 +60,7 @@ public class PerformanceSession {
 
     @Override
     public String toString() {
-        return "PerfomanceSession{" + "id=" + id + ", perfomance=" + performance
+        return "PerformanceSession{" + "id=" + id + ", performance=" + performance
                 + ", cinemaHall=" + stage + ", showTime=" + showTime + '}';
     }
 }
