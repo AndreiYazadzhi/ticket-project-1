@@ -4,7 +4,7 @@ import com.hibernate.model.ShoppingCart;
 import com.hibernate.model.User;
 import com.hibernate.model.dto.mapping.DtoResponseMapper;
 import com.hibernate.model.dto.response.ShoppingCartResponseDto;
-import com.hibernate.service.MovieSessionService;
+import com.hibernate.service.PerformanceSessionService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +19,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private final MovieSessionService movieSessionService;
+    private final PerformanceSessionService performanceSessionService;
     private final ShoppingCartService shoppingCartService;
     private final UserService userService;
     private final DtoResponseMapper<ShoppingCartResponseDto, ShoppingCart> responseMapper;
 
     @Autowired
-    public ShoppingCartController(MovieSessionService movieSessionService,
+    public ShoppingCartController(PerformanceSessionService performanceSessionService,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,
                                   DtoResponseMapper<ShoppingCartResponseDto,
                                           ShoppingCart> responseMapper) {
-        this.movieSessionService = movieSessionService;
+        this.performanceSessionService = performanceSessionService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.responseMapper = responseMapper;
     }
 
-    @PostMapping("/movie-sessions")
+    @PostMapping("/perfomance-sessions")
     public void addMovieSession(Authentication authentication, @RequestParam Long movieSessionId) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String email = userDetails.getUsername();

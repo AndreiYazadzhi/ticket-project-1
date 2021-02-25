@@ -14,7 +14,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private MovieSession movieSession;
+    private PerformanceSession performanceSession;
     @ManyToOne
     private User user;
 
@@ -26,12 +26,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public MovieSession getMovieSession() {
-        return movieSession;
+    public PerformanceSession getMovieSession() {
+        return performanceSession;
     }
 
-    public void setMovieSession(MovieSession movieSession) {
-        this.movieSession = movieSession;
+    public void setMovieSession(PerformanceSession performanceSession) {
+        this.performanceSession = performanceSession;
     }
 
     public User getUser() {
@@ -44,7 +44,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "id=" + id + ", movieSession=" + movieSession
+        return "Ticket{" + "id=" + id + ", movieSession=" + performanceSession
                 + ", user=" + user + '}';
     }
 }

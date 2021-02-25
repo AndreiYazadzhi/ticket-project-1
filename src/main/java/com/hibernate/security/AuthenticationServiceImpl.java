@@ -1,8 +1,10 @@
 package com.hibernate.security;
 
 import com.hibernate.model.User;
+import com.hibernate.service.RoleService;
 import com.hibernate.service.ShoppingCartService;
 import com.hibernate.service.UserService;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,15 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
+    private final RoleService roleService;
 
     @Autowired
     public AuthenticationServiceImpl(UserService userService,
-                                     ShoppingCartService shoppingCartService) {
+                                     ShoppingCartService shoppingCartService,
+                                     RoleService roleService) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -23,6 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User newUser = new User();
         newUser.setEmail(email);
         newUser.setPassword(password);
+        newUser.setRoles(Set.of(roleService.getRoleByName("USER")));
         newUser = userService.add(newUser);
         shoppingCartService.registerNewShoppingCart(newUser);
         return newUser;
