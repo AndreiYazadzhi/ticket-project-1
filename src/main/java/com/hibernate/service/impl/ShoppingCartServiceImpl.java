@@ -2,7 +2,7 @@ package com.hibernate.service.impl;
 
 import com.hibernate.dao.ShoppingCartDao;
 import com.hibernate.dao.TicketDao;
-import com.hibernate.model.MovieSession;
+import com.hibernate.model.PerformanceSession;
 import com.hibernate.model.ShoppingCart;
 import com.hibernate.model.Ticket;
 import com.hibernate.model.User;
@@ -25,10 +25,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void addSession(MovieSession movieSession, User user) {
+    public void addSession(PerformanceSession performanceSession, User user) {
         Ticket ticket = new Ticket();
         ticket.setUser(user);
-        ticket.setMovieSession(movieSession);
+        ticket.setMovieSession(performanceSession);
         ShoppingCart shoppingCartByUser = shoppingCartDao.getByUser(user);
         List<Ticket> tickets = shoppingCartByUser.getTickets();
         tickets.add(ticket);

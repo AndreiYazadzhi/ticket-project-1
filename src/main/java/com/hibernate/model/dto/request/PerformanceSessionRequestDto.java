@@ -2,7 +2,7 @@ package com.hibernate.model.dto.request;
 
 import javax.validation.constraints.NotNull;
 
-public class MovieSessionRequestDto {
+public class PerformanceSessionRequestDto {
     @NotNull
     private Long movieId;
     @NotNull

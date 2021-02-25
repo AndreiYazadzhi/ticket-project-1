@@ -1,17 +1,12 @@
-package com.hibernate.model.dto.response;
+package com.hibernate.model.dto.request;
 
-public class MovieResponseDto {
-    private Long id;
+import javax.validation.constraints.NotNull;
+
+public class PerformanceRequestDto {
+    @NotNull
     private String title;
+    @NotNull
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

@@ -1,6 +1,6 @@
 package com.hibernate.model.dto.response;
 
-public class CinemaHallResponseDto {
+public class StageResponseDto {
     private Long id;
     private String description;
 

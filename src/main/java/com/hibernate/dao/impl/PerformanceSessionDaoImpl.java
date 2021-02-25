@@ -1,8 +1,8 @@
 package com.hibernate.dao.impl;
 
-import com.hibernate.dao.MovieSessionDao;
+import com.hibernate.dao.PerformanceSessionDao;
 import com.hibernate.exception.DataProcessException;
-import com.hibernate.model.MovieSession;
+import com.hibernate.model.PerformanceSession;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,29 +14,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieSessionDaoImpl implements MovieSessionDao {
+public class PerformanceSessionDaoImpl implements PerformanceSessionDao {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public MovieSessionDaoImpl(SessionFactory sessionFactory) {
+    public PerformanceSessionDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public MovieSession add(MovieSession movieSession) {
+    public PerformanceSession add(PerformanceSession performanceSession) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(movieSession);
+            session.save(performanceSession);
             transaction.commit();
-            return movieSession;
+            return performanceSession;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Can`t insert Movie Session  " + movieSession, e);
+            throw new DataProcessException("Can`t insert Movie Session  " + performanceSession, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -45,27 +45,27 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public Optional<MovieSession> get(Long id) {
+    public Optional<PerformanceSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return Optional.ofNullable(session.get(MovieSession.class, id));
+            return Optional.ofNullable(session.get(PerformanceSession.class, id));
         } catch (Exception e) {
             throw new DataProcessException("Could not get movie session by id " + id + ". ", e);
         }
     }
 
     @Override
-    public void update(MovieSession movieSession) {
+    public void update(PerformanceSession performanceSession) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(movieSession);
+            session.update(performanceSession);
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new DataProcessException("Couldn't update the " + movieSession, e);
+            throw new DataProcessException("Couldn't update the " + performanceSession, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -80,7 +80,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.delete(session.get(MovieSession.class, id));
+            session.delete(session.get(PerformanceSession.class, id));
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
@@ -94,22 +94,22 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public List<MovieSession> getAll() {
+    public List<PerformanceSession> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM MovieSession", MovieSession.class).getResultList();
+            return session.createQuery("FROM MovieSession", PerformanceSession.class).getResultList();
         } catch (Exception e) {
             throw new DataProcessException("Could not get all movie sessions", e);
         }
     }
 
     @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+    public List<PerformanceSession> findAvailableSessions(Long movieId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("select ms from MovieSession ms "
                     + "left join fetch ms.cinemaHall "
                     + "left join fetch ms.movie "
                     + "where ms.movie.id = :id_movie "
-                    + "and DATE_FORMAT(ms.showTime, '%Y-%m-%d') = :date", MovieSession.class)
+                    + "and DATE_FORMAT(ms.showTime, '%Y-%m-%d') = :date", PerformanceSession.class)
                     .setParameter("id_movie", movieId)
                     .setParameter("date", DateTimeFormatter.ISO_LOCAL_DATE.format(date))
                     .getResultList();

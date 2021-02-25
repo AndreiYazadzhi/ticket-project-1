@@ -1,19 +1,18 @@
 package com.hibernate.model.dto.request;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Max;
 
-public class MovieRequestDto {
-    @NotNull
-    private String title;
-    @NotNull
+public class StageRequestDto {
+    @Max(75)
+    private int capacity;
     private String description;
 
-    public String getTitle() {
-        return title;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getDescription() {
