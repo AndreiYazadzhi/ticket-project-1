@@ -41,7 +41,7 @@ public class Performance {
 
     @Override
     public String toString() {
-        return "Perfomance{" + "id=" + id + ", title='" + title + '\''
+        return "Performance{" + "id=" + id + ", title='" + title + '\''
                 + ", description='" + description + '\'' + '}';
     }
 }
