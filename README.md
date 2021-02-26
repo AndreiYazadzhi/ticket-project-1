@@ -33,7 +33,6 @@ One user can have multiple roles. <br>
 # Technologies used <br>
 **backend:** Java, Spring Core/MVC/Security, Hibernate, Tomcat <br>
 **database:** MySQL <br>
-**tools:** lombok, log4j <br>
 
 # To start the project you need: <br>
 1) *Download and install* the [JDK](https://www.oracle.com/java/technologies/javase-downloads.html, "Download JDK") <br>
