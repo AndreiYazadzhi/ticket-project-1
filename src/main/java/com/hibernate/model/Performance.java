@@ -39,13 +39,9 @@ public class Performance {
         this.description = description;
     }
 
-
     @Override
     public String toString() {
-        return "Perfomance{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Performance{" + "id=" + id + ", title='" + title + '\''
+                + ", description='" + description + '\'' + '}';
     }
 }

@@ -24,8 +24,10 @@ public class PerformanceController {
     private final DtoRequestMapper<PerformanceRequestDto, Performance> requestMapper;
 
     @Autowired
-    public PerformanceController(PerformanceService performanceService, DtoResponseMapper<PerformanceResponseDto,
-            Performance> responseMapper, DtoRequestMapper<PerformanceRequestDto, Performance> requestMapper) {
+    public PerformanceController(PerformanceService performanceService,
+                                 DtoResponseMapper<PerformanceResponseDto,
+            Performance> responseMapper, DtoRequestMapper<PerformanceRequestDto,
+            Performance> requestMapper) {
         this.performanceService = performanceService;
         this.responseMapper = responseMapper;
         this.requestMapper = requestMapper;

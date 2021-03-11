@@ -96,7 +96,8 @@ public class PerformanceSessionDaoImpl implements PerformanceSessionDao {
     @Override
     public List<PerformanceSession> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM MovieSession", PerformanceSession.class).getResultList();
+            return session
+                    .createQuery("FROM MovieSession", PerformanceSession.class).getResultList();
         } catch (Exception e) {
             throw new DataProcessException("Could not get all movie sessions", e);
         }
